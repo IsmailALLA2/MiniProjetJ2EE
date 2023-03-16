@@ -2,7 +2,7 @@ package com.miniprojet.dao;
 
 import java.util.ArrayList;
 
-public interface dao <T> {
+public interface Dao<T> {
 
     Boolean save(T t);
     Boolean update(T t);
