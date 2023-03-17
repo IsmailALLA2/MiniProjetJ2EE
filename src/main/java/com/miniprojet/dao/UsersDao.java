@@ -6,6 +6,7 @@ import com.miniprojet.connection.MySqlDbCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsersDao implements Dao<Users> {
@@ -80,6 +81,28 @@ public class UsersDao implements Dao<Users> {
             }
             return usersList;
         } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public Users isUserExist(String email, String password) {
+        String qr = "Select * from Users where email = ? and password = ?";
+        try {
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setString(1, email);
+            pr.setString(2, password);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                Users user = new Users(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)
+                );
+                return user;
+            }
+            return null;
+        } catch (Exception e) {
             return null;
         }
     }

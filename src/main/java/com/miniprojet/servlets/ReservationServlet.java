@@ -1,4 +1,4 @@
-package com.miniprojet.controllers;
+package com.miniprojet.servlets;
 
 public class ReservationServlet {
 }
