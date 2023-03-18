@@ -1,4 +1,4 @@
-package com.miniprojet.servlets;
+package com.miniprojet.servlets.auth;
 
 import com.miniprojet.beans.Users;
 import com.miniprojet.dao.UsersDao;
@@ -7,8 +7,9 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", value = "/LoginServlet")
+@WebServlet(name = "LoginServlet", value = "/Login")
 public class LoginServlet extends HttpServlet {
     private UsersDao usersDao;
 
@@ -22,17 +23,19 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String email = request.getParameter("email");
-        System.out.println("okkkkkkkkk<sfnjdbqkjdbfhqjkdfbhqdfbqhjfdbqjhdfbqhfdbq");
         String password = request.getParameter("password");
+
         Users user = usersDao.isUserExist(email,password);
         if(user != null){
-            request.setAttribute("user",user);
+            session.setAttribute("user",user);
+            session.removeAttribute("errorMessage");
         }else {
-            request.setAttribute("errorMessage","Wrong email or password ");
+            session.setAttribute("errorMessage","Wrong email or password ");
         }
         response.setStatus(200);
-        request.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        response.sendRedirect("/test.jsp");
 
     }
 }

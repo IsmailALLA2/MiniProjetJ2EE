@@ -11,6 +11,13 @@ public class Matchs {
     private String team1;
     private String team2;
 
+    public Matchs(Date date, String place, String team1, String team2) {
+        this.date = date;
+        this.place = place;
+        this.team1 = team1;
+        this.team2 = team2;
+    }
+
     public Matchs(int id_match, Date date, String place, String team1, String team2) {
         this.id_match = id_match;
         this.date = date;

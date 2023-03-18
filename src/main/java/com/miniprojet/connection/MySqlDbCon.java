@@ -9,7 +9,7 @@ public class MySqlDbCon {
 
     private MySqlDbCon(){
         try {
-            cn = DriverManager.getConnection("jdbc:mysql:thin:@localhost:3306:ticket_res");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ticket_res","root","");
         }catch (Exception ex){
             ex.printStackTrace();
         }

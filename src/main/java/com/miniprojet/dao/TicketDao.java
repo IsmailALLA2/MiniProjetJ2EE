@@ -1,5 +1,6 @@
 package com.miniprojet.dao;
 
+import com.miniprojet.beans.Matchs;
 import com.miniprojet.beans.Ticket;
 import com.miniprojet.connection.MySqlDbCon;
 
@@ -77,6 +78,27 @@ public class TicketDao implements Dao<Ticket> {
             }
             return tickets;
         }catch (Exception ex){
+            return null;
+        }
+    }
+
+    @Override
+    public Ticket getById(int id) {
+        String qr = "select * from Ticket where id_ticket = ?";
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                return new Ticket(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4)
+                );
+            }
+            return null;
+        }catch(Exception ex){
             return null;
         }
     }

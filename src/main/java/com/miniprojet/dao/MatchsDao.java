@@ -84,4 +84,26 @@ public class MatchsDao implements Dao<Matchs> {
             return null;
         }
     }
+
+    @Override
+    public Matchs getById(int id) {
+        String qr = "select * from Matchs where id_match = ?";
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                return new Matchs(
+                        rs.getInt(1),
+                        rs.getDate(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                );
+            }
+            return null;
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }

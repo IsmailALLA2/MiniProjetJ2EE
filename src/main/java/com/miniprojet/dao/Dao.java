@@ -9,4 +9,6 @@ public interface Dao<T> {
     Boolean delete(T t);
     ArrayList<T> getAll();
 
+    T getById(int id);
+
 }

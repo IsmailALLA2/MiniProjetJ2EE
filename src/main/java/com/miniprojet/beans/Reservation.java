@@ -4,16 +4,25 @@ public class Reservation {
     private int id_res;
     private String name;
     private String phone;
-    private String Email;
+    private String email;
     private int age;
     private String details;
     private int ticket_id;
+
+    public Reservation(String name, String phone, String email, int age, String details, int ticket_id) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.age = age;
+        this.details = details;
+        this.ticket_id = ticket_id;
+    }
 
     public Reservation(int id_res, String name, String phone, String email, int age, String details, int ticket_id) {
         this.id_res = id_res;
         this.name = name;
         this.phone = phone;
-        Email = email;
+        this.email = email;
         this.age = age;
         this.details = details;
         this.ticket_id = ticket_id;
@@ -44,11 +53,11 @@ public class Reservation {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        email = email;
     }
 
     public int getAge() {

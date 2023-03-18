@@ -6,6 +6,12 @@ public class Ticket {
     private int qte;
     private String type;
 
+    public Ticket(int match_id, int qte, String type) {
+        this.match_id = match_id;
+        this.qte = qte;
+        this.type = type;
+    }
+
     public Ticket(int id_ticket, int match_id, int qte, String type) {
         this.id_ticket = id_ticket;
         this.match_id = match_id;

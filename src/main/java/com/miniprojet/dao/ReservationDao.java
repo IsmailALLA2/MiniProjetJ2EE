@@ -1,5 +1,6 @@
 package com.miniprojet.dao;
 
+import com.miniprojet.beans.Matchs;
 import com.miniprojet.beans.Reservation;
 import com.miniprojet.connection.MySqlDbCon;
 
@@ -88,6 +89,30 @@ public class ReservationDao implements Dao<Reservation>{
             }
             return reservations;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Reservation getById(int id) {
+        String qr = "select * from Reservation where id_res = ?";
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                return new Reservation(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getInt(7)
+                );
+            }
+            return null;
+        }catch(Exception ex){
             return null;
         }
     }

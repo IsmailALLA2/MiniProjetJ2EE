@@ -1,12 +1,12 @@
 package com.miniprojet.dao;
 
+import com.miniprojet.beans.Matchs;
 import com.miniprojet.beans.Users;
 import com.miniprojet.connection.MySqlDbCon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsersDao implements Dao<Users> {
@@ -81,6 +81,27 @@ public class UsersDao implements Dao<Users> {
             }
             return usersList;
         } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public Users getById(int id) {
+        String qr = "select * from Users where id_user = ?";
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                return new Users(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)
+                );
+            }
+            return null;
+        }catch(Exception ex){
             return null;
         }
     }
