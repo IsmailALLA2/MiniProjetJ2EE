@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ReservationServlet", value = "/ReservationServlet")
+@WebServlet(name = "ReservationServlet", value = "/Reservation")
 public class ReservationServlet extends HttpServlet {
 
     private ReservationDao rsd;
@@ -17,6 +17,14 @@ public class ReservationServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         rsd = new ReservationDao();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        int id_match = Integer.parseInt(req.getParameter("id_match"));
+        session.setAttribute("id_match",id_match);
+        resp.sendRedirect("/ReservationPage.jsp");
     }
 
     @Override
@@ -33,9 +41,10 @@ public class ReservationServlet extends HttpServlet {
         if (res){
             session.setAttribute("ticket",ticket_id);
             session.removeAttribute("errorMessage");
+            response.sendRedirect("/");
         }else{
             session.setAttribute("errorMessage","Something went wrong");
-
+            response.sendRedirect("/");
         }
     }
 }

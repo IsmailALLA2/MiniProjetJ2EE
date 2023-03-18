@@ -78,9 +78,11 @@ public class MatchsDao implements Dao<Matchs> {
                         rs.getString(4),
                         rs.getString(5)
                 );
+                matchs.add(match);
             }
             return matchs;
         }catch (Exception ex){
+            ex.printStackTrace();
             return null;
         }
     }
