@@ -474,14 +474,14 @@
             </div>
         </div>
 
-        <%
-            Iterator<Matchs> it_matchs = md.getAll().iterator();
-            if (it_matchs.hasNext()) {
-                while (it_matchs.hasNext()) {
-                    Matchs match = it_matchs.next();
-        %>
         <div class="row">
             <div class="col-lg-6">
+                <%
+                    Iterator<Matchs> it_matchs = md.getAll().iterator();
+                    if (it_matchs.hasNext()) {
+                        while (it_matchs.hasNext()) {
+                            Matchs match = it_matchs.next();
+                %>
                 <div class="custom-media d-flex">
                     <div class="img mr-4">
                         <img src="assets/img_1.jpg" alt="Image" class="img-fluid">
@@ -496,18 +496,17 @@
                         <p><a href="/Reservation?id_match=<%=match.getId_match()%>">Book Your Ticket </a></p>
                     </div>
                 </div>
+                <%
+                    }
+                } else {
+                %>
+                <h3>No data</h3>
+                <br/>
+                <%}%>
             </div>
         </div>
     </div>
 
-
-    <%
-        }
-    } else{
-    %>
-    <h3>No data</h3>
-    <br/>
-    <%}%>
 
     <footer class="footer-section">
         <div class="container">

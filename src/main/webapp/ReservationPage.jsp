@@ -26,7 +26,7 @@
     while (it_tickets.hasNext()) {
         Ticket t = it_tickets.next();
         switch (t.getType()) {
-            case "reqular":
+            case "regular":
                 regularTicket = t;
                 break;
             case "premium":
@@ -85,16 +85,15 @@
         <div class="triple-wthree">
             <div class="field-agileinfo-spc form-w3-agile-text11">
                 <select name="age" class="form-control">
-                    <option value="">Adult(12+ Yrs)</option>
-                    <option value="1">18</option>
-                    <option value="2">19</option>
-                    <option value="3">20</option>
-                    <option value="5">21+</option>
+                    <option value="12">Adult(12- Yrs)</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21+</option>
                 </select>
             </div>
             <div class="field-agileinfo-spc form-w3-agile-text22">
-
-
+                
             </div>
             <div class="field-agileinfo-spc form-w3-agile-text33">
 

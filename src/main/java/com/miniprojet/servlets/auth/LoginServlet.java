@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/admin/home.jsp");
         }else {
             session.setAttribute("errorMessage","Wrong email or password ");
-            response.sendRedirect("/loginPage.jsp");
+            response.sendRedirect("/LoginPage.jsp");
         }
 
 
