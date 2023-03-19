@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="com.miniprojet.dao.MatchsDao" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.miniprojet.beans.Matchs" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Locale" %>
+
+<%
+    session.invalidate();
+%>
 <!DOCTYPE html>
 <html lang="en">
 

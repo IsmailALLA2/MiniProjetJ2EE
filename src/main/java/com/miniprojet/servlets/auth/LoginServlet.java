@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 @WebServlet(name = "LoginServlet", value = "/Login")
 public class LoginServlet extends HttpServlet {
@@ -31,11 +31,12 @@ public class LoginServlet extends HttpServlet {
         if(user != null){
             session.setAttribute("user",user);
             session.removeAttribute("errorMessage");
+            response.sendRedirect("/admin/home.jsp");
         }else {
             session.setAttribute("errorMessage","Wrong email or password ");
+            response.sendRedirect("/loginPage.jsp");
         }
-        response.setStatus(200);
-        response.sendRedirect("/test.jsp");
+
 
     }
 }

@@ -29,6 +29,7 @@ public class UsersDao implements Dao<Users> {
             return res > 0;
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             return false;
         }
     }

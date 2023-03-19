@@ -92,13 +92,60 @@ public class TicketDao implements Dao<Ticket> {
             if (rs.next()){
                 return new Ticket(
                         rs.getInt(1),
-                        rs.getInt(2),
+                        rs.getInt(4),
                         rs.getInt(3),
-                        rs.getString(4)
+                        rs.getString(2)
                 );
             }
             return null;
         }catch(Exception ex){
+            return null;
+        }
+    }
+
+    public ArrayList<Ticket> getTicketByMatchId(int id){
+        String qr = "select * from Ticket where match_id = ?";
+        Ticket ticket;
+        ArrayList<Ticket> ticketsArr = new ArrayList<>();
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()){
+                ticket = new Ticket(
+                  rs.getInt(1),
+                  rs.getInt(4),
+                  rs.getInt(3),
+                  rs.getString(2)
+                );
+                ticketsArr.add(ticket);
+            }
+            return ticketsArr;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public Ticket getTicketByMatchIdAndType(int id,String type){
+        String qr = "select * from Ticket where match_id = ? and type =?";
+        try{
+            PreparedStatement pr = cn.prepareStatement(qr);
+            pr.setInt(1,id);
+            pr.setString(2,type);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()){
+                return new Ticket(
+                        rs.getInt(1),
+                        rs.getInt(4),
+                        rs.getInt(3),
+                        rs.getString(2)
+                );
+            }
+            return null;
+        }catch(Exception ex){
+            ex.printStackTrace();
             return null;
         }
     }

@@ -9,6 +9,8 @@ public class MySqlDbCon {
 
     private MySqlDbCon(){
         try {
+
+
             cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ticket_res","root","");
         }catch (Exception ex){
             ex.printStackTrace();

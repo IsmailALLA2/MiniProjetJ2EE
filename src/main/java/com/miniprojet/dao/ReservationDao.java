@@ -116,4 +116,15 @@ public class ReservationDao implements Dao<Reservation>{
             return null;
         }
     }
+    public ResultSet getArchive()  {
+        String qr = "SELECT * FROM ticket_matchs_reservation";
+        try {
+            PreparedStatement pr = cn.prepareStatement(qr);
+            return pr.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }

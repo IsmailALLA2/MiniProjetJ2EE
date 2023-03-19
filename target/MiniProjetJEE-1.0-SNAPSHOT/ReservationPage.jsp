@@ -1,10 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: machd
-  Date: 18/3/2023
-  Time: 17:26
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.miniprojet.beans.Ticket" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +14,32 @@
     </style>
 </head>
 <body>
+<%!
+    Ticket regularTicket;
+    Ticket premiumTicket;
+    Ticket vipTicket;
+%>
 
-    <%
+<%
+    ArrayList<Ticket> tickets = (ArrayList<Ticket>) session.getAttribute("tickets");
+    Iterator<Ticket> it_tickets = tickets.iterator();
+    while (it_tickets.hasNext()) {
+        Ticket t = it_tickets.next();
+        switch (t.getType()) {
+            case "reqular":
+                regularTicket = t;
+                break;
+            case "premium":
+                premiumTicket = t;
+                break;
+            case "vip":
+                vipTicket = t;
+                break;
+        }
 
-    %>
+    }
 
+%>
 
 
 <div class="booking-form-w3layouts">
@@ -52,9 +69,9 @@
             <div class="field-agileinfo-spc form-w3-agile-text1">
 
             </div>
-          <%--  <div class="field-agileinfo-spc form-w3-agile-text2">
-                <select class="form-control">
-            </div>--%>
+            <%--  <div class="field-agileinfo-spc form-w3-agile-text2">
+                  <select class="form-control">
+              </div>--%>
         </div>
         <div class="main-flex-w3ls-sectns">
             <div class="field-agileinfo-spc form-w3-agile-text1">
@@ -86,23 +103,33 @@
         <div class="radio-section">
             <h6>Select your Seat</h6>
             <ul class="radio-buttons-w3-agileits">
+                <%
+                    if (regularTicket != null && regularTicket.getQte() >0  ) {%>
                 <li>
-                    <input type="radio" id="a-option" name="type">
+                    <input value="regular" type="radio" id="a-option" name="type">
                     <label for="a-option">Regular Ticket</label>
                     <div class="check"></div>
                 </li>
+                <%}
+                    if (premiumTicket != null  && premiumTicket.getQte() >0){
+                %>
                 <li>
-                    <input type="radio" id="b-option" name="type">
+                    <input value="premium" type="radio" id="b-option" name="type">
                     <label for="b-option">Premium Ticket </label>
                     <div class="check">
                         <div class="inside"></div>
                     </div>
                 </li>
+                <%
+                    }
+                    if (vipTicket != null && vipTicket.getQte()>0){
+                %>
                 <li>
-                    <input type="radio" id="c-option" name="type">
+                    <input value="vip" type="radio" id="c-option" name="type">
                     <label for="a-option">VIP Ticket</label>
                     <div class="check"></div>
                 </li>
+                <%}%>
             </ul>
             <div class="clear"></div>
         </div>
